@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { listarNaipes, tomarNaipe, valorNaipe } from "./helpers/";
 import { Boton } from "./components/Boton";
 import { Participantes } from "./components/Participantes";
@@ -10,17 +10,30 @@ export const Blackjack = () => {
   const [puntosJugador, setPuntosJugador] = useState(0);
 
   const takeYouCard = () => {
-    if (cardsRestantes.length <= 0) return;
-    const naipe = tomarNaipe(cardsRestantes); // Tomar una carta de las restantes
-    setCards([...cards, naipe]);
-    setCardsRestantes(cardsRestantes.filter((carta) => carta !== naipe)); // Eliminar la carta tomada
-    setPuntosJugador(parseInt(puntosJugador) + parseInt(valorNaipe(naipe)));
+    setTimeout(() => {
+      if (cardsRestantes.length <= 0) return;
+      const naipe = tomarNaipe(cardsRestantes); // Tomar una carta de las restantes
+      setCards([...cards, naipe]);
+      setCardsRestantes(cardsRestantes.filter((carta) => carta !== naipe)); // Eliminar la carta tomada
+      setPuntosJugador(parseInt(puntosJugador) + parseInt(valorNaipe(naipe)));
+    }, 500);
   };
 
   const resetGame = () => {
     setCards([]);
     setPuntosJugador(0);
   };
+
+  useEffect(() => {
+    if (puntosJugador == 21) {
+      alert("FELICITACIONES HAS GANADO EL JUEGO");
+    } else if (puntosJugador > 21) {
+      setTimeout(() => {
+        alert("Lo siento perdiste");
+      }, 550);
+    }
+  }, [puntosJugador]);
+
   return (
     <>
       <div className="buttons">

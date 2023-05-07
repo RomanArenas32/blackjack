@@ -85,7 +85,7 @@ img{
 }
 
 .gridCard{
-  margin-top: 6rem;
+  margin-top: 7rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   margin-bottom: 2rem;
