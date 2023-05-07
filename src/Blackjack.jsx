@@ -26,10 +26,14 @@ export const Blackjack = () => {
 
   useEffect(() => {
     if (puntosJugador == 21) {
-      alert("FELICITACIONES HAS GANADO EL JUEGO");
+      setTimeout(() => {
+        alert("FELICITACIONES HAS GANADO EL JUEGO");
+      }, 550);
     } else if (puntosJugador > 21) {
       setTimeout(() => {
         alert("Lo siento perdiste");
+        setCards([]);
+        setPuntosJugador(0);
       }, 550);
     }
   }, [puntosJugador]);
